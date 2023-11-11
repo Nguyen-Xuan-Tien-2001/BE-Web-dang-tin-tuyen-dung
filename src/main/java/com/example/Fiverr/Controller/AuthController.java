@@ -67,6 +67,8 @@ public class AuthController {
             user.setRole(RoleEnum.USER);
         } else if ("HR".equals(role)) {
             user.setRole(RoleEnum.HR);
+        }else if ("ADMIN".equals(role)) {
+            user.setRole(RoleEnum.ADMIN);
         }
 
         try {
@@ -112,18 +114,19 @@ public class AuthController {
 
     @PostMapping("/change-password/{id}")
     public APIResponse changePassword(@PathVariable("id") Long id,
-    @RequestBody ChangePasswordRequest request) {
-    userService.changePassword(id, request.getOldPassword(),
-    request.getNewPassword());
-    APIResponse response = new APIResponse(true, null, "Doi mat khau thanh cong");
-    return response;
+            @RequestBody ChangePasswordRequest request) {
+        userService.changePassword(id, request.getOldPassword(),
+                request.getNewPassword());
+        APIResponse response = new APIResponse(true, null, "Doi mat khau thanh cong");
+        return response;
     }
 
     @PostMapping("/forgot-password")
     public APIResponse forgotPassword(@RequestParam("email") String email) {
         try {
             userService.sendPassToEmail(email);
-            APIResponse response = new APIResponse(true, null, "Mật khẩu đã được gửi đến email. Vui lòng kiểm tra lại!");
+            APIResponse response = new APIResponse(true, null,
+                    "Mật khẩu đã được gửi đến email. Vui lòng kiểm tra lại!");
             return response;
         } catch (IllegalArgumentException e) {
             APIResponse response = new APIResponse(false, e, "Vui lòng kiểm tra lại Email hoặc tài khoản của bạn!");

@@ -23,13 +23,13 @@ public class FiverrApplication {
 		SpringApplication.run(FiverrApplication.class, args);
 	}
 
-	@Bean
-	CommandLineRunner run(UserRepository userRepository,
-			PasswordEncoder passwordEncoder) {
-		return args -> {
-			Users admin = new Users(1L, "tien20062001@gmail.com", "admin","123456" ,RoleEnum.ADMIN);
+	// @Bean
+	// CommandLineRunner run(UserRepository userRepository,
+	// 		PasswordEncoder passwordEncoder) {
+	// 	return args -> {
+	// 		Users admin = new Users(1L, "tien20062001@gmail.com", "admin","123456" ,RoleEnum.ADMIN);
 
-			userRepository.save(admin);
-		};
-	}
+	// 		userRepository.save(admin);
+	// 	};
+	// }
 }
